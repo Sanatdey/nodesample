@@ -1,0 +1,20 @@
+{
+  "name": "node_task",
+  "version": "1.0.0",
+  "description": "This is a login system",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "task",
+    "practics"
+  ],
+  "author": "Sanat",
+  "license": "ISC"
+}
