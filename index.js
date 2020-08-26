@@ -1,45 +1,39 @@
-// var time = 30
-// var timer =setInterval(
-//     function(){
-//         time = time - 1
-//         console.log('Hi this is sanat, this is a counter'+time);
-//         if(time == 0){
-//             clearInterval(timer)
-//         }
-//     },
-// 1000);
-// console.log(__dirname);
-// console.log(__filename);
-// var http = require('http');
-var fs = require('fs');
-var home1 = fs.createReadStream(__dirname + '/14-07-20.html','utf8');
-var contact = fs.createReadStream(__dirname + '/form.html','utf8');
-// var WRS = fs.createWriteStream(__dirname + '/ThisIsLove.txt','utf8');
+var express = require('express');
+var app = express();
+const port = process.env.PORT || 3000
+//var partials = require('express-partials');
 
-// MRS.on('data', function(chunk){
-//     console.log('new chank Received: ')
-//     WRS.write(chunk);
-// })
+app.set('view engine', 'ejs');
+//app.use(partials());
 
-var http = require('http');
-var server = http.createServer(function(req,res){
-    
-    // var doo = {
-    //     name: 'Sanat',
-    //     Job: 'Student',
-    //     place: 'Jhalda'
-    // };
-    // res.end(JSON.stringify(doo));
+app.use('/assets', express.static('assets'));
 
-    if(req.url === '/home' || req.url === '/' || req.url === ''){
-        res.writeHead('200',{'Content-Type':'text/html'});
-        home1.pipe(res)
-    } else if(req.url == '/contact'){
-        res.writeHead('200',{'Content-Type':'text/html'});
-        contact.pipe(res)
-    } else {
-        res.writeHead('404',{'Content-Type':'text/html'});
-        res.end(req.url);
-    }
+
+app.get('/',function(req,res){
+    res.render('index');
 });
-server.listen(3000, '127.0.0.1');
+
+
+app.get('/home',function(req,res){
+    res.render('index');
+});
+
+app.get('/contact',function(req,res){
+    res.render('contact');
+});
+
+app.get('/abhi',function(req,res){
+    res.render('index1');
+});
+
+// app.get('/profile/:id',function(req,res){
+//     res.send('You Want to see the id of ' + req.params.id)
+// });
+
+app.get('/profile/:name',function(req,res){
+    var data = {name: req.params.name, lang: ['c','Python','js','Node']}
+    res.render('profile', {data:data});
+});
+
+
+app.listen(port);
