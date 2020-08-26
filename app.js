@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+const port = process.env.PORT || 3000
 //var partials = require('express-partials');
 
 app.set('view engine', 'ejs');
@@ -35,4 +36,4 @@ app.get('/profile/:name',function(req,res){
 });
 
 
-app.listen(3000);
+app.listen(port);
